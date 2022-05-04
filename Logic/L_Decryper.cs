@@ -1,44 +1,18 @@
-﻿using Data;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Data;
 
-namespace Decryper
+namespace Logic
 {
-    class Program
+    public class L_Decryper
     {
-        static void Main(string[] args)
+        Dictionary p = new Dictionary();
+
+        public string Decript(string t, string o, string k)
         {
-            Dictionary p = new Dictionary();
-
-            Console.WriteLine("Desencriptar Textos");
-
-            string t, o, k;
-
-            t = o = k = "";
-            string text = "";
-
-
-            //tar[t.Length - 1] = 1;
-
-            /*
-            if(t.Lenght!=o.Lenght){
-            	Console.WriteLine("La longitud del texto no coincide con el orden binario, ");
-            }
-            */
-
-            Console.WriteLine();
-            Console.WriteLine("Escriba el texto encriptado: ");
-            t = Console.ReadLine();
-
-            Console.WriteLine();
-            Console.WriteLine("Escriba el orden binario: ");
-            o = Console.ReadLine();
-
-            Console.WriteLine();
-            Console.WriteLine("Escriba la clave numerica: ");
-            k = Console.ReadLine();
-
-            //Console.WriteLine(o);
-
-
             int[] tar = new int[t.Length];
             int[] oar = new int[o.Length];
             int[] kar = new int[k.Length];
@@ -76,6 +50,7 @@ namespace Decryper
             //    Console.WriteLine(oar[i]);
             //}//
 
+            string text = "";
 
             for (int i = 0; i < tar.Length; i++)
             {
@@ -103,10 +78,7 @@ namespace Decryper
                 //Console.WriteLine(tar[i]);
             }
 
-            Console.WriteLine();
-            Console.WriteLine(text);
-
-            //*/
+            return text;
         }
     }
 }

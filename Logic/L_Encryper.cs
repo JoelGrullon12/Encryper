@@ -1,26 +1,25 @@
-﻿using Data;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Data;
 
-namespace Encryper
+namespace Logic
 {
-    class Program
+    public class L_Encryper
     {
-        static void Main(string[] args)
+        Dictionary p = new Dictionary();
+        public string[] Encript(string text)
         {
-            Dictionary p=new Dictionary();
-
-            string text;
+            text = text.ToUpper();
             string[] letters;
 
-            Console.Write("Escriba el texto que quiera encriptar: ");
-            text = Console.ReadLine();
-
-            text = text.ToUpper();
-
-            letters=new string[text.Length];
+            letters = new string[text.Length];
 
             int o = 0;
 
-            foreach(char c in text)
+            foreach (char c in text)
             {
                 letters[o] = c.ToString();
                 o++;
@@ -51,19 +50,10 @@ namespace Encryper
                 t += p.N2L(n2n);
                 n += num.ToString();
                 k += UoD;
-
-                //Console.WriteLine(letters[i]);
             }
 
-            Console.WriteLine(t);
-            Console.WriteLine(n);
-            Console.WriteLine(k);
-
-            //for (int i = 0; i < 30; i++)
-            //{
-            //    Console.WriteLine(r.Next(2).ToString());
-            //}
-
+            string[] encripted = { t, n, k };
+            return encripted;
         }
     }
 }
