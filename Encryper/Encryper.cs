@@ -8,16 +8,19 @@ namespace Encryper
         {
             L_Encryper le=new L_Encryper();
 
-            string text;
+            string text, path;
 
             Console.Write("Escriba el texto que quiera encriptar: ");
             text = Console.ReadLine();
 
-            string[] t = le.Encript(text);
+            //Console.Write("Escriba la ruta donde desea guardar los archivos encriptados: ");
+            //path = Console.ReadLine();
 
-            Console.WriteLine(t[0]);
-            Console.WriteLine(t[1]);
-            Console.WriteLine(t[2]);
+            le.Encript(text);
+
+            //Console.WriteLine(t[0]);
+            //Console.WriteLine(t[1]);
+            //Console.WriteLine(t[2]);
 
             //for (int i = 0; i < 30; i++)
             //{
