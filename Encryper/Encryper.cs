@@ -24,7 +24,7 @@ namespace Encryper
                         Console.WriteLine("ENCRYPER {-t | -f} {texto | archivo} {-fl | -d} [carpeta]");
                         Console.WriteLine("");
                         Console.WriteLine("Para encriptar un texto en ROT: (NO IMPLEMENTADO)");
-                        Console.WriteLine("ENCRYPER -r {x} {-t | -f} {texto | archivo} {-fl | -d} [carpeta]");
+                        Console.WriteLine("ENCRYPER -r {x} {-t | -f} {texto | archivo} {-fl | -d} [txt]");
                         Console.WriteLine("");
                         Console.WriteLine("Argumentos:");
                         Console.WriteLine("-h, --help\tAbrir esta ayuda");
@@ -38,6 +38,7 @@ namespace Encryper
                         Console.WriteLine("-r --rot\tEncriptar el texto en ROT");
                         Console.WriteLine("x\t\tNumero entero, numero de posiciones que se van a desplazar las letras" +
                             "\n\t\tPositivo para desplazar hacia arriba, negativo para desplazar hacia abajo");
+                        Console.WriteLine("txt\t\tRuta local del archivo donde se va a guardar el texto encriptado en ROT");
                         return;
 
                     case "-t":
@@ -48,29 +49,7 @@ namespace Encryper
                             break;
 
                         texto=ToF(args, rot);
-                        if (args[2] == "-fl" || args[2] == "--folder")
-                        {
-                            if (args.Length < 4)
-                            {
-                                Console.WriteLine("Falta el argumento de la ruta de la carpeta");
-                                break;
-                            }
-
-                            le.Encript(texto, args[3]);
-                        }
-                        else if(args[2] == "-d" || args[2] == "--direct")
-                        {
-                            Console.WriteLine("");
-                            string[] encryped = le.Encript(texto);
-                            for (int i = 0; i < encryped.Length; i++)
-                            {
-                                Console.WriteLine(encryped[i]);
-                            }
-                        }
-                        else
-                        {
-                            Console.WriteLine("No se reconoce el argumento \"" + args[2] + "\"");
-                        }
+                        FLoD(args, texto);
                         return;
 
                     case "-r":
@@ -80,6 +59,40 @@ namespace Encryper
 
                         rot = true;
                         texto=ToF(args, rot);
+
+                        int pos = 0;
+
+                        try
+                        {
+                            pos = Convert.ToInt32(args[1]);
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine("Error al leer las posiciones de encriptado ROT");
+                            Console.WriteLine(e.Message);
+                            return;
+                        }
+
+                        if (args[4] == "-fl" || args[4] == "--folder")
+                        {
+                            if (args.Length < 4)
+                            {
+                                Console.WriteLine("Falta el argumento de la ruta de la carpeta");
+                                break;
+                            }
+
+                            le.ROT(texto, pos, args[5]);
+                        }
+                        else if (args[4] == "-d" || args[4] == "--direct")
+                        {
+                            Console.WriteLine("");
+                            string rotted = le.ROT(texto, pos);
+                            Console.WriteLine(rotted);
+                        }
+                        else
+                        {
+                            Console.WriteLine("No se reconoce el argumento \"" + args[2] + "\"");
+                        }
                         return;
 
                     default:
@@ -120,11 +133,11 @@ namespace Encryper
 
             string texto = "";
 
-            if (args[0] == "-t" || args[0] == "--text")
+            if (args[0+r] == "-t" || args[0 + r] == "--text")
             {
                 texto = args[1+r];
             }
-            else if (args[0] == "-f" || args[0] == "--file")
+            else if (args[0 + r] == "-f" || args[0 + r] == "--file")
             {
                 texto = le.L_ReadFromFile(args[1+r]);
 
@@ -142,12 +155,32 @@ namespace Encryper
                 return texto;
         }
 
-        //public static void FLoD(string[] args, bool rot)
-        //{
-        //    int r = 0;
-        //    if (rot)
-        //        r = 2;
-        //}
+        public static void FLoD(string[] args, string texto)
+        {
+            if (args[2] == "-fl" || args[2] == "--folder")
+            {
+                if (args.Length < 4)
+                {
+                    Console.WriteLine("Falta el argumento de la ruta de la carpeta");
+                    return;
+                }
+
+                le.Encript(texto, args[3]);
+            }
+            else if (args[2] == "-d" || args[2] == "--direct")
+            {
+                Console.WriteLine("");
+                string[] encryped = le.Encript(texto);
+                for (int i = 0; i < encryped.Length; i++)
+                {
+                    Console.WriteLine(encryped[i]);
+                }
+            }
+            else
+            {
+                Console.WriteLine("No se reconoce el argumento \"" + args[2] + "\"");
+            }
+        }
 
     }
 }
