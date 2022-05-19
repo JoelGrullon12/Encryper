@@ -11,29 +11,16 @@ namespace Logic
     {
         Dictionary p = new Dictionary();
 
-        public string Decript(string t, string o, string k)
+        public string Decript(string t, string k, string o)
         {
             int[] tar = new int[t.Length];
-            int[] oar = new int[o.Length];
             int[] kar = new int[k.Length];
+            int[] oar = new int[o.Length];
 
             int u = 0;
             foreach (char c in t)
             {
                 tar[u] = p.L2N(c.ToString());
-                u++;
-            }
-
-
-            //for (int i = 0; i < tar.Length; i++)
-            //{
-            //	Console.WriteLine(tar[i]);
-            //}
-
-            u = 0;
-            foreach (char c in o)
-            {
-                oar[u] = Convert.ToInt32(c.ToString());
                 u++;
             }
 
@@ -44,6 +31,12 @@ namespace Logic
                 u++;
             }
 
+            u = 0;
+            foreach (char c in o)
+            {
+                oar[u] = Convert.ToInt32(c.ToString());
+                u++;
+            }
 
             //for (int i = 0; i < oar.Length; i++)
             //{

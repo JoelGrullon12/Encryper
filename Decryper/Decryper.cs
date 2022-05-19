@@ -28,16 +28,16 @@ namespace Decryper
             t = Console.ReadLine();
 
             Console.WriteLine();
-            Console.WriteLine("Escriba el orden binario: ");
-            o = Console.ReadLine();
-
-            Console.WriteLine();
             Console.WriteLine("Escriba la clave numerica: ");
             k = Console.ReadLine();
 
+            Console.WriteLine();
+            Console.WriteLine("Escriba el orden binario: ");
+            o = Console.ReadLine();
+
             //Console.WriteLine(o);
 
-            string text = ld.Decript(t, o, k);
+            string text = ld.Decript(t, k, o);
             
 
             Console.WriteLine();
