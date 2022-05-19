@@ -23,7 +23,7 @@ namespace Encryper
                         Console.WriteLine("Para encriptar cada letra individual");
                         Console.WriteLine("ENCRYPER {-t | -f} {texto | archivo} {-fl | -d} [carpeta]");
                         Console.WriteLine("");
-                        Console.WriteLine("Para encriptar un texto en ROT: (NO IMPLEMENTADO)");
+                        Console.WriteLine("Para encriptar un texto en ROT (Cesar): (NO IMPLEMENTADO)");
                         Console.WriteLine("ENCRYPER -r {x} {-t | -f} {texto | archivo} {-fl | -d} [txt]");
                         Console.WriteLine("");
                         Console.WriteLine("Argumentos:");
@@ -35,9 +35,9 @@ namespace Encryper
                         Console.WriteLine("-fl, --folder\tGuardar el texto encriptado en tres archivos en una carpeta");
                         Console.WriteLine("-d, --direct\tMostrar el texto encriptado directamente en la consola");
                         Console.WriteLine("carpeta\t\tRuta de la carpeta donde se van a guardar los archivos");
-                        Console.WriteLine("-r --rot\tEncriptar el texto en ROT");
+                        Console.WriteLine("-r --rot\tEncriptar el texto en ROT o Cesar");
                         Console.WriteLine("x\t\tNumero entero, numero de posiciones que se van a desplazar las letras" +
-                            "\n\t\tPositivo para desplazar hacia arriba, negativo para desplazar hacia abajo");
+                            "\n\t\tPositivo para desplazar hacia adelante, negativo para desplazar hacia atras");
                         Console.WriteLine("txt\t\tRuta local del archivo donde se va a guardar el texto encriptado en ROT");
                         return;
 
@@ -68,7 +68,7 @@ namespace Encryper
                         }
                         catch (Exception e)
                         {
-                            Console.WriteLine("Error al leer las posiciones de encriptado ROT");
+                            Console.WriteLine("Error al leer las posiciones de desplazamiento de encriptado ROT");
                             Console.WriteLine(e.Message);
                             return;
                         }

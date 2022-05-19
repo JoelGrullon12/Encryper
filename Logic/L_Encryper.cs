@@ -110,13 +110,22 @@ namespace Logic
             {
                 int l2n = dict.L2N(letters[i]);
 
+                if (l2n == 27 || l2n == 28 || l2n == 0)
+                {
+                    t += letters[i];
+                    continue;
+                }
+
                 int n2n = l2n + pos;
 
-                if (n2n < 1)
-                    n2n += 26;
+                while (n2n < 1 || n2n > 26)
+                {
+                    if (n2n < 1)
+                        n2n += 26;
 
-                if (n2n > 26)
-                    n2n -= 26;
+                    if (n2n > 26)
+                        n2n -= 26;
+                }
 
                 t += dict.N2L(n2n);
             }
